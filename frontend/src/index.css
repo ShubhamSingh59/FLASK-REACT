@@ -50,3 +50,46 @@ body {
 .table1 tbody tr:nth-child(even) {
   background-color: #eee; /* Add a light background color for even rows (optional) */
 }
+/* Style for the loginform container */
+.loginform {
+  width: 300px;
+  margin: 50px; /* Center the form horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Style for the form labels */
+.loginform label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Style for the input fields */
+.loginform input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+/* Style for the submit button */
+.loginform input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Style for the submit button on hover */
+.loginform input[type="submit"]:hover {
+  background-color: #45a049;
+}

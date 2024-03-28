@@ -10,6 +10,10 @@ app.config['MYSQL_HOST'] = config.MYSQL_HOST
 app.config['MYSQL_USER'] = config.MYSQL_USER
 app.config['MYSQL_PASSWORD'] = config.MYSQL_PASSWORD
 app.config['MYSQL_DB'] = config.MYSQL_DB
+app.config['MYSQL_USER1'] = config.MYSQL_USER1
+app.config['MYSQL_PASSWORD1'] = config.MYSQL_PASSWORD1
+app.config['MYSQL_USER2'] = config.MYSQL_USER2
+app.config['MYSQL_PASSWORD2'] = config.MYSQL_PASSWORD2
 
 mysql = MySQL(app)
 
@@ -36,6 +40,14 @@ def get_data():
 def player_data():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM Player")  # Replace 'your_table' with your actual table name
+    data = cur.fetchall()
+    cur.close()
+    return jsonify(data)
+
+@app.route('/api/view1', methods=['GET'])
+def View():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM player_view")  # Replace 'your_table' with your actual table name
     data = cur.fetchall()
     cur.close()
     return jsonify(data)

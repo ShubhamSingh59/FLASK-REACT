@@ -10,6 +10,8 @@ function Navbar(){
                 <li><Link to="/insert">Insert</Link></li>
                 <li><Link to="/update">Update</Link></li>
                 <li><Link to="/players">Players</Link></li>
+                <li><Link to="/view1">View1</Link></li>
+                <li><Link to="/login">Login</Link></li>
             </nav>
         </div>
     );

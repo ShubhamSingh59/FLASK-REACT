@@ -6,6 +6,8 @@ import Navbar from './Navbar';
 import Sports from './Pages/Sports';
 import Insert from './Insert';
 import Player from './Pages/Player';
+import View1 from './Pages/View1';
+import Login from './Pages/Login';
 function Home() {
   return <h2>Home</h2>;
 }
@@ -38,6 +40,14 @@ function App() {
     {
       path: '/players',
       element: <Player />
+    },
+    {
+      path: '/view1',
+      element: <View1/>
+    },
+    {
+      path: '/login',
+      element: <Login/>
     }
   ];
 
@@ -45,7 +55,6 @@ function App() {
   return (
     <>
      <RouterProvider router={router}/>
-       
     </>
   
    
