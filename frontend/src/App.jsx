@@ -3,7 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Navbar from './Navbar';
-import About from './About';
+import Sports from './Pages/Sports';
+import Insert from './Insert';
+import Player from './Pages/Player';
 function Home() {
   return <h2>Home</h2>;
 }
@@ -19,15 +21,23 @@ function App() {
     },
     {
       path: '/home',
-      element: <Home/>
+      element: <Navbar/>
     },
     {
-      path: '/about',
-      element: <About />
+      path: '/sports',
+      element: <Sports/>
     },
     {
       path: '/users',
       element: <Users />
+    },
+    {
+      path: '/insert',
+      element: <Insert />
+    },
+    {
+      path: '/players',
+      element: <Player />
     }
   ];
 

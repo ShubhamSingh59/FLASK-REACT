@@ -22,7 +22,23 @@ def get_data():
     data = cur.fetchall()
     cur.close()
     return jsonify(data)
-
+#@app.route('/api/Sports/Insert', methods=['POST'])
+#def insert_data(){
+#    if request.method == 'POST':
+#        Sports_Name = request.form['Sports_Name'],
+#        cur = mysql.connection.cursor(),
+#        cur.execute("INSERT INTO Sports () VALUES (%s)", (Sports_Name)),
+#        mysql.connection.commit(),
+#        cur.close(),
+#      #  pylac jsonify(Sports_Name)
+#}
+@app.route('/api/Player', methods=['GET'])
+def player_data():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM Player")  # Replace 'your_table' with your actual table name
+    data = cur.fetchall()
+    cur.close()
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)

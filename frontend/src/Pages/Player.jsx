@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 //  JsonData = data;
 //  return data;
 //};
-function About() {
+function Player() {
     //const [columns, setColumns] = useState([]);
     //const [records, setRecords] = useState([]);
     //const [loading, setLoading] = useState(true);
@@ -18,7 +18,7 @@ function About() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://127.0.0.1:5000/api/Sports");
+                const response = await fetch("http://127.0.0.1:5000/api/Player");
                 const data = await response.json();
                 setJsonData(data);
             } catch (error) {
@@ -29,27 +29,40 @@ function About() {
         fetchData();
     }, []); // Empty dependency array to fetch data only once when the component mounts
 
-    const displayData = jsonData.map((info, index) => (
+    const displayData = () => {return jsonData.map((player, index) => (
         <tr key={index}>
-            <td>{info}</td>
+            <td>{player[0]}</td>
+            <td>{player[1]}</td> 
+            <td>{player[2]}</td>
+            <td>{player[3]}</td>
+            <td>{player[4]}</td>
+            <td>{player[5]}</td>
+            <td>{player[6]}</td>    
         </tr>
     ));
-
+    };
     return (
         <div>
-            <h2>About</h2>
+            <h2>These are the Games which played in IITGN</h2>
             <table className='table1'>
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Player_ID</th>
+                        <th>First_Name</th>
+                        <th>Last_Name</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    {jsonData.length > 0 ? displayData : <tr><td>Loading...</td></tr>}
+                    {jsonData.length > 0 ? displayData() : <tr><td colSpan="7">Loading...</td></tr>}
                 </tbody>
             </table>
         </div>
     );
 }
 
-export default About;
+export default Player;

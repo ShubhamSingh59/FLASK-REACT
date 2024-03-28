@@ -5,8 +5,11 @@ function Navbar(){
         <div>
             <nav>
                 <li><Link to="/home">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
+                <li><Link to="/sports">Sports</Link></li>
                 <li><Link to="/users">Users</Link></li>
+                <li><Link to="/insert">Insert</Link></li>
+                <li><Link to="/update">Update</Link></li>
+                <li><Link to="/players">Players</Link></li>
             </nav>
         </div>
     );
