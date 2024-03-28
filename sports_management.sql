@@ -14,7 +14,6 @@ CREATE TABLE Player (
     Email VARCHAR(100) UNIQUE
 );
 
-
 -- Create Sports table
 CREATE TABLE Sports (
     Sports_Name VARCHAR(50) PRIMARY KEY
@@ -139,5 +138,12 @@ CREATE TABLE Competition (
     FOREIGN KEY (Team2_ID) REFERENCES Team(Team_ID)
 );
 
-
-
+create user 'Player'@'localhost' identified by 'password1';
+create user 'Coach'@'localhost' identified by 'password2';
+select user, host from mysql.user;
+create view player_view as select Sports.Sports_Name, Player.First_Name, Player.Last_Name
+from Sports, Player;
+create view coach_view as select Sports.Sports_Name, Player.First_Name, Player.Last_Name, Player.Player_ID, Player.Email
+from Sports, Player;
+grant select on player_view to 'Player'@'localhost';
+grant select on coach_view to 'Coach'@'localhost';
