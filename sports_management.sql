@@ -147,3 +147,5 @@ create view coach_view as select Sports.Sports_Name, Player.First_Name, Player.L
 from Sports, Player;
 grant select on player_view to 'Player'@'localhost';
 grant select on coach_view to 'Coach'@'localhost';
+
+SELECT * FROM mysql.tables_priv WHERE user = 'root'@'localhost' AND db = 'sports_management';

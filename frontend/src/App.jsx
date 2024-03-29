@@ -25,7 +25,7 @@ function App() {
     },
     {
       path: '/home',
-      element: <Navbar/>
+      element: <Home/>
     },
     {
       path: '/sports',

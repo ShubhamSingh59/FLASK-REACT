@@ -10,10 +10,10 @@ app.config['MYSQL_HOST'] = config.MYSQL_HOST
 app.config['MYSQL_USER'] = config.MYSQL_USER
 app.config['MYSQL_PASSWORD'] = config.MYSQL_PASSWORD
 app.config['MYSQL_DB'] = config.MYSQL_DB
-app.config['MYSQL_USER1'] = config.MYSQL_USER1
-app.config['MYSQL_PASSWORD1'] = config.MYSQL_PASSWORD1
-app.config['MYSQL_USER2'] = config.MYSQL_USER2
-app.config['MYSQL_PASSWORD2'] = config.MYSQL_PASSWORD2
+#app.config['MYSQL_USER1'] = config.MYSQL_USER1
+#app.config['MYSQL_PASSWORD1'] = config.MYSQL_PASSWORD1
+#app.config['MYSQL_USER2'] = config.MYSQL_USER2
+#app.config['MYSQL_PASSWORD2'] = config.MYSQL_PASSWORD2
 users = {
     'root': 'Stromer/2003',
     'Player': 'password1',
@@ -31,16 +31,7 @@ def get_data():
     data = cur.fetchall()
     cur.close()
     return jsonify(data)
-#@app.route('/api/Sports/Insert', methods=['POST'])
-#def insert_data(){
-#    if request.method == 'POST':
-#        Sports_Name = request.form['Sports_Name'],
-#        cur = mysql.connection.cursor(),
-#        cur.execute("INSERT INTO Sports () VALUES (%s)", (Sports_Name)),
-#        mysql.connection.commit(),
-#        cur.close(),
-#      #  pylac jsonify(Sports_Name)
-#}
+
 @app.route('/api/Player', methods=['GET'])
 def player_data():
     cur = mysql.connection.cursor()
@@ -51,29 +42,36 @@ def player_data():
 
 @app.route('/api/view1', methods=['GET'])
 def View():
+    app.config['MYSQL_HOST'] = 'localhost'
+    app.config['MYSQL_USER'] = 'Player'
+    app.config['MYSQL_PASSWORD'] = 'password1'
+    app.config['MYSQL_DB'] = 'sports_management'
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM player_view")  # Replace 'your_table' with your actual table name
+    cur.execute("show tables")  # Replace 'your_table' with your actual table name
     data = cur.fetchall()
     cur.close()
     return jsonify(data)
+
 @app.route('/api/login', methods=['POST'])
 def Login():
-   
-        cur = mysql.connection.cursor()
-        user = request.form("input1")
-        password = request.form("input2")
+    try:
+        user = request.json.get('username')
+        password = request.json.get('password')
         if user in users and users[user] == password:
-            return json.dumps(user)
-            
+            app.config['MYSQL_HOST'] = 'localhost'
+            app.config['MYSQL_USER'] = user
+            app.config['MYSQL_PASSWORD'] = password
+            app.config['MYSQL_DB'] = 'sports_management'
+            cur = mysql.connection.cursor()
+            cur.execute("show tables")
+            data = cur.fetchall()
+            return jsonify({'success': True, 'tables': data})  
+            cur.close()
         else:
-            return json.dumps("nahi hua")
-            
-
-#    cur.execute("showtab")  # Replace 'your_table' with your actual table name
-#    data = cur.fetchall()
-#    cur.close()
-#    return jsonify(data)
-
+            return jsonify({'success': False, 'error': 'Invalid Credential'})
+        
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
